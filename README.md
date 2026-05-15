@@ -47,20 +47,17 @@ src/
     ├── firebase.ts       # Firebase initialization and exports
     └── firestore.ts      # Helper functions for database operations
 
-🚀 Getting Started
-Prerequisites
+## 🚀 Getting Started
+
+### Prerequisites
 Ensure you have the following installed:
+* Node.js (v18 or higher)
+* npm, yarn, or pnpm
+* A Firebase Project (with Firestore and Authentication enabled)
+* A Gmail account for Nodemailer (with an App Password generated)
 
-Node.js (v18 or higher)
-
-npm, yarn, or pnpm
-
-A Firebase Project (with Firestore and Authentication enabled)
-
-A Gmail account for Nodemailer (with an App Password generated)
-
-1. Clone the repository
-Bash
+### 1. Clone the repository
+```bash
 git clone [https://github.com/acm-svnit/website.git](https://github.com/acm-svnit/website.git)
 cd website
 2. Install dependencies
@@ -98,4 +95,5 @@ Navigate to http://localhost:3000/admin.
 You must be authenticated via Firebase Auth. Make sure to set up authorized admin emails in your Firebase console.
 
 🤝 Contributing
+  
 Contributions, issues, and feature requests are welcome! If you are an SVNIT student and want to contribute to the chapter's open-source projects, feel free to fork this repository and submit a Pull Request.
