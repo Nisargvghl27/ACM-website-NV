@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { auth, db } from "@/lib/firebase"; 
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut, signInWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc, getDocs, deleteDoc, doc, query, orderBy } from "firebase/firestore";
 import { motion } from "framer-motion";
 import { LayoutDashboard, PlusCircle, Loader2, Trash2, List } from "lucide-react";
@@ -13,6 +13,12 @@ export default function AdminPanel() {
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   
+  // Login State
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+
   // Events State
   const [events, setEvents] = useState<any[]>([]);
   const [fetchingEvents, setFetchingEvents] = useState(true);
@@ -49,6 +55,20 @@ export default function AdminPanel() {
     });
     return () => unsubscribe();
   }, []);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoggingIn(true);
+    setLoginError("");
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error: any) {
+      console.error("Login Error:", error);
+      setLoginError("Invalid email or password. Please try again.");
+    } finally {
+      setIsLoggingIn(false);
+    }
+  };
 
   const handleAddEvent = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -87,8 +107,71 @@ export default function AdminPanel() {
   };
 
   if (loading) return <div className="min-h-screen bg-black flex items-center justify-center text-white"><Loader2 className="animate-spin text-blue-500 w-10 h-10" /></div>;
-  if (!user) return <div className="min-h-screen bg-black flex items-center justify-center text-white font-bold text-xl">Unauthorized. Please go to /admin to Login.</div>;
 
+  // Show Login Form if not authenticated
+  if (!user) {
+    return (
+      <section className="min-h-screen flex items-center justify-center px-4 bg-gray-50 dark:bg-black transition-colors duration-500">
+        
+        {/* Background Ambient Glow */}
+        <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none flex justify-center items-center">
+          <div className="absolute w-[400px] h-[400px] bg-blue-500/10 dark:bg-blue-600/20 rounded-full blur-[120px]"></div>
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          className="w-full max-w-md p-8 sm:p-10 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[2.5rem] shadow-2xl backdrop-blur-md relative overflow-hidden"
+        >
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-cyan-400"></div>
+          
+          <div className="flex justify-center mb-6">
+            <div className="w-16 h-16 bg-blue-50 dark:bg-blue-500/10 rounded-2xl flex items-center justify-center">
+              <LayoutDashboard className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+            </div>
+          </div>
+
+          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-2 text-center tracking-tight">Admin Login</h2>
+          <p className="text-gray-500 dark:text-gray-400 text-sm text-center mb-8">Enter your credentials to access the dashboard</p>
+
+          {loginError && (
+            <div className="mb-6 p-3 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 text-red-600 dark:text-red-400 text-sm text-center rounded-xl font-medium">
+              {loginError}
+            </div>
+          )}
+
+          <form onSubmit={handleLogin} className="space-y-4">
+            <input 
+              type="email" 
+              placeholder="Admin Email" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              className="w-full p-4 bg-gray-50 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500/50 outline-none transition-all" 
+              required 
+            />
+            <input 
+              type="password" 
+              placeholder="Password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              className="w-full p-4 bg-gray-50 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500/50 outline-none transition-all" 
+              required 
+            />
+            
+            <button 
+              type="submit" 
+              disabled={isLoggingIn} 
+              className="w-full mt-4 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold uppercase tracking-widest rounded-xl flex justify-center items-center transition-all shadow-[0_10px_30px_rgba(37,99,235,0.3)] disabled:opacity-50"
+            >
+              {isLoggingIn ? <Loader2 className="animate-spin h-5 w-5" /> : "Sign In"}
+            </button>
+          </form>
+        </motion.div>
+      </section>
+    );
+  }
+
+  // Render Dashboard if authenticated
   return (
     <section className="min-h-screen pt-32 pb-24 px-4 bg-gray-50 dark:bg-black transition-colors duration-500">
       <div className="max-w-7xl mx-auto">
