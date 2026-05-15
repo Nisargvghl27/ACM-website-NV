@@ -46,29 +46,38 @@ src/
 └── lib/                  # Configurations and utilities
     ├── firebase.ts       # Firebase initialization and exports
     └── firestore.ts      # Helper functions for database operations
+```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 Ensure you have the following installed:
+
 * Node.js (v18 or higher)
 * npm, yarn, or pnpm
 * A Firebase Project (with Firestore and Authentication enabled)
 * A Gmail account for Nodemailer (with an App Password generated)
 
 ### 1. Clone the repository
+
 ```bash
-git clone [https://github.com/acm-svnit/website.git](https://github.com/acm-svnit/website.git)
+git clone https://github.com/acm-svnit/website.git
 cd website
-2. Install dependencies
-Bash
+```
+
+### 2. Install dependencies
+
+```bash
 npm install
 # or
 yarn install
-3. Set up Environment Variables
-Create a .env.local file in the root directory and add the following variables. Replace the placeholder values with your actual Firebase config and Email credentials:
+```
 
-Code snippet
+### 3. Set up Environment Variables
+
+Create a `.env.local` file in the root directory and add the following variables. Replace the placeholder values with your actual Firebase config and Email credentials:
+
+```env
 # Firebase Configuration
 NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
@@ -80,20 +89,26 @@ NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 # Nodemailer Configuration (For Contact Form)
 EMAIL_USER=your_chapter_email@gmail.com
 EMAIL_PASS=your_gmail_app_password
-4. Run the Development Server
-Bash
+```
+
+### 4. Run the Development Server
+
+```bash
 npm run dev
 # or
 yarn dev
-Open http://localhost:3000 in your browser to see the application running.
+```
 
-🔒 Admin Access
+Open `http://localhost:3000` in your browser to see the application running.
+
+## 🔒 Admin Access
+
 To access the Admin panel to manage events:
 
-Navigate to http://localhost:3000/admin.
+Navigate to `http://localhost:3000/admin`.
 
 You must be authenticated via Firebase Auth. Make sure to set up authorized admin emails in your Firebase console.
 
-🤝 Contributing
-  
+## 🤝 Contributing
+
 Contributions, issues, and feature requests are welcome! If you are an SVNIT student and want to contribute to the chapter's open-source projects, feel free to fork this repository and submit a Pull Request.
