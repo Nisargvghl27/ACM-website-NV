@@ -14,12 +14,12 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 );
 
 export default function AboutPage() {
-  const containerVariants = {
+  const containerVariants: any = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
   };
 
-  const itemVariants = {
+  const itemVariants: any = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
   };
@@ -44,7 +44,7 @@ export default function AboutPage() {
           description="Empowering the next generation of computing educators, researchers, and professionals since 2005."
         />
 
-        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-6xl mx-auto">
+        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-5xl mx-auto">
           
           <motion.div variants={itemVariants} className="relative p-8 md:p-12 lg:p-16 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[3rem] backdrop-blur-sm overflow-hidden shadow-xl dark:shadow-2xl transition-colors">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-cyan-400 opacity-50"></div>
@@ -106,7 +106,7 @@ export default function AboutPage() {
 
               </div>
 
-              {/* RIGHT SIDE: Text Content */}
+              {/* RIGHT SIDE: Exact Text Content */}
               <div className="lg:col-span-7 flex flex-col justify-center">
                 <div className="space-y-6 text-gray-600 dark:text-gray-300 text-lg leading-relaxed transition-colors">
                   <p>

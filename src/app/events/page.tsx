@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 
-// Only the events you have actually added images for
 const eventsData = [
   { id: 1, title: "Dotslash 6.0", image: "/dotslash6.jpg", link: "#" },
   { id: 2, title: "Epiphany 12.1", image: "/epiphany12.jpg", link: "#" },
@@ -15,12 +14,12 @@ const eventsData = [
 ];
 
 export default function EventsPage() {
-  const containerVariants = {
+  const containerVariants: any = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
   };
 
-  const itemVariants = {
+  const itemVariants: any = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
   };
@@ -28,7 +27,6 @@ export default function EventsPage() {
   return (
     <section className="min-h-screen pt-32 pb-24 px-4 relative overflow-hidden bg-gray-50 dark:bg-black transition-colors duration-500">
       
-      {/* Background Ambience */}
       <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none flex justify-center items-center">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100 dark:bg-blue-600/10 rounded-full blur-[150px] transition-colors duration-500"></div>
         <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-100 dark:bg-cyan-500/10 rounded-full blur-[120px] transition-colors duration-500"></div>
@@ -36,14 +34,13 @@ export default function EventsPage() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Header using the exact text from the original website */}
         <PageHeader 
           icon={Calendar}
           title="Chapter"
           highlightText="Events"
           gradientFrom="blue-700"
           gradientTo="cyan-600"
-          description="These are all the events conducted by the ACM Student chapter in the academic year 2024-2025"
+          description="These are all the events conducted by the ACM Student chapter in the academic year 2023-2024"
         />
 
         <motion.div 
@@ -60,7 +57,6 @@ export default function EventsPage() {
               whileTap={{ scale: 0.98 }}
               className="group relative flex flex-col bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden shadow-lg dark:shadow-none transition-all duration-300"
             >
-              {/* Image Container - NO DARK GRADIENTS, fully visible posters */}
               <div className="relative w-full aspect-square bg-gray-100 dark:bg-zinc-900 overflow-hidden border-b border-gray-200 dark:border-white/10">
                 <Image 
                   src={event.image} 
@@ -71,7 +67,6 @@ export default function EventsPage() {
                 />
               </div>
 
-              {/* Text Container */}
               <div className="flex flex-col flex-grow p-6">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 transition-colors">
                   {event.title}
@@ -85,7 +80,6 @@ export default function EventsPage() {
                 </Link>
               </div>
               
-              {/* Invisible Clickable Overlay */}
               <Link href={event.link} className="absolute inset-0 z-10" aria-label={`View ${event.title}`}></Link>
             </motion.div>
           ))}

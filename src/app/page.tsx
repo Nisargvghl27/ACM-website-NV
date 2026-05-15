@@ -5,12 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import Loading from "./loading"; // Importing your beautiful loading screen!
+import Loading from "./loading"; 
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Control how long the splash screen stays visible (2.5 seconds)
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -18,7 +17,7 @@ export default function HomePage() {
     return () => clearTimeout(timer);
   }, []);
 
-  const containerVariants = {
+  const containerVariants: any = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -26,19 +25,18 @@ export default function HomePage() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: any = {
     hidden: { opacity: 0, x: -30 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
   };
 
-  const imageVariants = {
+  const imageVariants: any = {
     hidden: { opacity: 0, x: 30, scale: 0.95 },
     visible: { opacity: 1, x: 0, scale: 1, transition: { duration: 1, ease: "easeOut", delay: 0.5 } },
   };
 
   return (
     <>
-      {/* --- Premium Splash Screen Overlay --- */}
       <AnimatePresence mode="wait">
         {isLoading && (
           <motion.div
@@ -53,7 +51,6 @@ export default function HomePage() {
         )}
       </AnimatePresence>
 
-      {/* --- Main Home Page Content --- */}
       <section className="relative min-h-screen flex items-center pt-20 pb-20 overflow-hidden bg-gray-50 dark:bg-black transition-colors duration-500">
         
         <div className="absolute inset-0 w-full h-full -z-10 overflow-hidden">
@@ -76,7 +73,7 @@ export default function HomePage() {
             <motion.div 
               variants={containerVariants}
               initial="hidden"
-              animate={!isLoading ? "visible" : "hidden"} // Only animate in when loading is done!
+              animate={!isLoading ? "visible" : "hidden"} 
               className="flex flex-col items-start text-left"
             >
               <motion.div variants={itemVariants}>
@@ -124,7 +121,7 @@ export default function HomePage() {
             <motion.div 
               variants={imageVariants}
               initial="hidden"
-              animate={!isLoading ? "visible" : "hidden"} // Waits for loading screen to finish
+              animate={!isLoading ? "visible" : "hidden"} 
               className="relative lg:ml-auto w-full max-w-lg xl:max-w-xl mt-12 lg:mt-0"
             >
               <div className="absolute -top-6 -left-6 w-24 h-24 border-t-2 border-l-2 border-blue-200 dark:border-blue-500/50 rounded-tl-3xl opacity-100 dark:opacity-50 hidden md:block transition-colors"></div>
