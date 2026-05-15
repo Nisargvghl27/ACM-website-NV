@@ -1,36 +1,29 @@
-🌐 ACM SVNIT Official Website
+# 🌐 ACM SVNIT Official Website
+
 The official web platform for the ACM Student Chapter at the National Institute of Technology, Surat (SVNIT). This repository houses a modern, high-performance web application designed to showcase the chapter's events, team members, and overall legacy.
 
-✨ Features
-Dynamic Events Management: Browse past and upcoming technical events, hackathons, and sessions fetched in real-time from Firebase Firestore.
+## ✨ Features
 
-Admin Dashboard: A secured /admin portal authenticated via Firebase Auth allowing the core team to add, manage, and delete events dynamically.
+* **Dynamic Events Management:** Browse past and upcoming technical events, hackathons, and sessions fetched in real-time from Firebase Firestore.
+* **Admin Dashboard:** A secured `/admin` portal authenticated via Firebase Auth allowing the core team to add, manage, and delete events dynamically.
+* **Fully Functional Contact Form:** A `/contact` page that stores inquiries in the database and sends automated, professional email confirmations to both the user and the ACM team via Nodemailer.
+* **Dark/Light Mode:** Seamless theme switching with system-preference detection using `next-themes`.
+* **Cinematic Animations:** Smooth page transitions, scroll reveals, and micro-interactions powered by Framer Motion.
+* **Responsive Design:** A fully mobile-friendly architecture built with Tailwind CSS.
 
-Fully Functional Contact Form: A /contact page that stores inquiries in the database and sends automated, professional email confirmations to both the user and the ACM team via Nodemailer.
+## 🛠️ Tech Stack
 
-Dark/Light Mode: Seamless theme switching with system-preference detection using next-themes.
+* **Framework:** Next.js (App Router)
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS
+* **Animations:** Framer Motion
+* **Database & Auth:** Firebase (Firestore & Firebase Authentication)
+* **Icons:** Lucide React
+* **Mailing:** Nodemailer
 
-Cinematic Animations: Smooth page transitions, scroll reveals, and micro-interactions powered by Framer Motion.
+## 📂 Project Structure
 
-Responsive Design: A fully mobile-friendly architecture built with Tailwind CSS.
-
-🛠️ Tech Stack
-Framework: Next.js (App Router)
-
-Language: TypeScript
-
-Styling: Tailwind CSS
-
-Animations: Framer Motion
-
-Database & Auth: Firebase (Firestore & Firebase Authentication)
-
-Icons: Lucide React
-
-Mailing: Nodemailer
-
-📂 Project Structure
-
+```text
 src/
 ├── app/                  # Next.js App Router pages
 │   ├── about/            # About the chapter
@@ -53,7 +46,7 @@ src/
 └── lib/                  # Configurations and utilities
     ├── firebase.ts       # Firebase initialization and exports
     └── firestore.ts      # Helper functions for database operations
-    
+
 🚀 Getting Started
 Prerequisites
 Ensure you have the following installed:
@@ -68,7 +61,7 @@ A Gmail account for Nodemailer (with an App Password generated)
 
 1. Clone the repository
 Bash
-git clone https://github.com/acm-svnit/website.git
+git clone [https://github.com/acm-svnit/website.git](https://github.com/acm-svnit/website.git)
 cd website
 2. Install dependencies
 Bash
@@ -105,5 +98,4 @@ Navigate to http://localhost:3000/admin.
 You must be authenticated via Firebase Auth. Make sure to set up authorized admin emails in your Firebase console.
 
 🤝 Contributing
-Contributions, issues, and feature requests are welcome!
-If you are an SVNIT student and want to contribute to the chapter's open-source projects, feel free to fork this repository and submit a Pull Request.
+Contributions, issues, and feature requests are welcome! If you are an SVNIT student and want to contribute to the chapter's open-source projects, feel free to fork this repository and submit a Pull Request.
