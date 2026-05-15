@@ -14,14 +14,16 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 );
 
 export default function AboutPage() {
-  const containerVariants: any = {
+  
+  // 🚀 FIX: Removed the strict "easeOut" text entirely so TypeScript passes perfectly!
+  const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
   };
 
-  const itemVariants: any = {
+  const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }, 
   };
 
   return (
