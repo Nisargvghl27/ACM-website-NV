@@ -30,7 +30,7 @@ Icons: Lucide React
 Mailing: Nodemailer
 
 📂 Project Structure
-Plaintext
+
 src/
 ├── app/                  # Next.js App Router pages
 │   ├── about/            # About the chapter
@@ -53,6 +53,7 @@ src/
 └── lib/                  # Configurations and utilities
     ├── firebase.ts       # Firebase initialization and exports
     └── firestore.ts      # Helper functions for database operations
+    
 🚀 Getting Started
 Prerequisites
 Ensure you have the following installed:
